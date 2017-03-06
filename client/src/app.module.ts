@@ -7,6 +7,7 @@ import { NavbarComponent } from './app/navbar/navbar.component';
 import { HomeComponent} from './app/home/home.component';
 import { UserListComponent } from './app/users/user-list.component';
 import { UserListService } from './app/users/user-list.service';
+import { AdminComponent} from './app/login/admin.component';
 import { routing } from './app/app.routes';
 import { FormsModule } from '@angular/forms';
 
@@ -25,7 +26,8 @@ import { PipeModule } from './pipe.module';
         AppComponent,
         HomeComponent,
         NavbarComponent,
-        UserListComponent
+        UserListComponent,
+        AdminComponent
     ],
     providers: [ UserListService ],
     bootstrap: [ AppComponent ]
