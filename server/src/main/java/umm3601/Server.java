@@ -6,6 +6,9 @@ import javax.servlet.MultipartConfigElement;
 import javax.servlet.http.Part;
 import java.io.IOException;
 import java.io.StringWriter;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 import static spark.Spark.*;
 
@@ -32,14 +35,15 @@ public class Server {
 
         before((request, response) -> response.header("Access-Control-Allow-Origin", "*"));
 
-        get("/import-csv", (req, res) -> "Import Csv");
+        get("/import-csv", (req, res) -> {
+            // return MongoDB JSON here
+            return "";
+        });
         post("/import-csv", (req, res) -> {
-            System.out.println("Import CSV");
-
-            String s = getFileContent(req.body());
-            System.out.println(s);
-
-            return s;
+            // The csv data from the client comes in here
+            String csvFile = getFileContent(req.body());
+            System.out.println(csvFile);
+            return csvFile;
         });
 
 
@@ -86,7 +90,18 @@ public class Server {
 
         String[] splitBody = body.split("\n\r");
 
-        return splitBody[1];
+        String fileContent = "";
+
+        for(int i = 1; i < splitBody.length - 1; i++)
+            fileContent += splitBody[i];
+
+        return fileContent;
+    }
+
+    public static String[] splittingString(String s){
+        String[] splitS = s.split(",");
+        System.out.println(splitS.length);
+        return splitS;
     }
 
 }

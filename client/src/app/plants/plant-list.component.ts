@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PlantListService } from "./plant-list.service";
-import { Plant } from "../temp/Plant";
+import { Plants } from "../temp/Plants";
 import {RequestOptions, Headers} from "@angular/http";
 import {Observable} from "rxjs";
 
@@ -10,7 +10,8 @@ import {Observable} from "rxjs";
 })
 
 export class PlantListComponent implements OnInit {
-    public plants: Plant[];
+    public plants: Plants[];
+
 
     constructor(private plantListService: PlantListService) {
         // this.plants = this.plantListService.getPlants();
@@ -21,12 +22,19 @@ export class PlantListComponent implements OnInit {
 
         this.plantListService.uploadFile(event);
 
+        this.plantListService.getPlants();
 
 
     }
 
-
     ngOnInit(): void {
+        this.plantListService.getPlants().subscribe(
+            plants => this.plants = plants,
+            err => {
+                console.log(err);
+            }
+        );
 
+        console.log("Subscribed to plants");
     }
 }

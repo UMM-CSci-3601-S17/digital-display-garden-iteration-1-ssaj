@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Http, Headers, RequestOptions, Response} from '@angular/http';
-import { Plant } from '../temp/Plant';
+import { Plants } from '../temp/Plants';
 import { Observable } from "rxjs";
 
 @Injectable()
@@ -26,6 +26,11 @@ export class PlantListService {
                     error => console.log(error)
                 )
         }
+    }
+
+    getPlants(): Observable<Plants[]>{
+        console.log("Getting plants");
+        return this.http.request("http://localhost:4567/import-csv").map(res => res.json());
     }
 
     // getUsers(): Observable<Plant[]> {

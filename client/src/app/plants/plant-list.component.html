@@ -6,5 +6,12 @@
 </head>
 <body>
 <input type="file" (change)="fileChange($event)" placeholder="Upload file">
+
+<h1>Plants</h1>
+
+<li *ngFor="let plant of plants" class="list-group-item">
+    {{plant.plantName}}
+</li>
+
 </body>
 </html>
