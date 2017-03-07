@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UserListService } from "./user-list.service";
-import { User } from "./user";
-import { FilterBy } from "./filter.pipe";
+import { UserListService } from "../temp/user-list.service";
+import { User } from "../temp/user";
+import { FilterBy } from "../temp/filter.pipe";
 
 @Component({
     selector: 'user-list-component',

@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import { User } from "./user";
-import { UserListComponent } from "./user-list.component";
+import { UserListComponent } from "../users/user-list.component";
 import { UserListService } from "./user-list.service";
 import { Observable } from "rxjs";
 import { PipeModule } from "../../pipe.module";

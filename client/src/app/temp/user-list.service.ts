@@ -7,12 +7,15 @@ import { Observable } from "rxjs";
 export class UserListService {
     private userUrl: string = API_URL + "users";
     constructor(private http:Http) { }
-
+//
     getUsers(): Observable<User[]> {
+        console.log("User URL " + this.userUrl);
         return this.http.request(this.userUrl).map(res => res.json());
     }
+    //
+    // getUserById(id: string): Observable<User> {
+    //     return this.http.request(this.userUrl + "/" + id).map(res => res.json());
+    // }
 
-    getUserById(id: string): Observable<User> {
-        return this.http.request(this.userUrl + "/" + id).map(res => res.json());
-    }
+
 }

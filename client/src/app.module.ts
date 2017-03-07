@@ -7,11 +7,13 @@ import { NavbarComponent } from './app/navbar/navbar.component';
 import { HomeComponent} from './app/home/home.component';
 import { KittensComponent }   from './app/kittens/kittens.component';
 import { UserListComponent } from './app/users/user-list.component';
-import { UserListService } from './app/users/user-list.service';
+import { PlantListComponent } from './app/plants/plant-list.component';
+import { UserListService } from './app/temp/user-list.service';
 import { routing } from './app/app.routes';
 import { FormsModule } from '@angular/forms';
 
 import { PipeModule } from './pipe.module';
+import {PlantListService} from "./app/plants/plant-list.service";
 
 @NgModule({
     imports: [
@@ -27,9 +29,10 @@ import { PipeModule } from './pipe.module';
         KittensComponent,
         HomeComponent,
         NavbarComponent,
-        UserListComponent
+        UserListComponent,
+        PlantListComponent
     ],
-    providers: [ UserListService ],
+    providers: [ UserListService, PlantListService ],
     bootstrap: [ AppComponent ]
 })
 

@@ -56,16 +56,16 @@ describe("User component", () => {
         });
     }));
 
-    it("can retrieve Pat by ID", () => {
-        userComponent.setId("pat_id");
-        expect(userComponent.user).toBeDefined();
-        expect(userComponent.user.name).toBe("Pat");
-        expect(userComponent.user.email).toBe("pat@something.com");
-    });
-
-    it("returns undefined for Santa", () => {
-        userComponent.setId("Santa");
-        expect(userComponent.user).not.toBeDefined();
-    });
+    // it("can retrieve Pat by ID", () => {
+    //     userComponent.setId("pat_id");
+    //     expect(userComponent.user).toBeDefined();
+    //     expect(userComponent.user.name).toBe("Pat");
+    //     expect(userComponent.user.email).toBe("pat@something.com");
+    // });
+    //
+    // it("returns undefined for Santa", () => {
+    //     userComponent.setId("Santa");
+    //     expect(userComponent.user).not.toBeDefined();
+    // });
 
 });

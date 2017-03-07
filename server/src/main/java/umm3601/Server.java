@@ -34,19 +34,14 @@ public class Server {
 
         get("/import-csv", (req, res) -> "Import Csv");
         post("/import-csv", (req, res) -> {
-            MultipartConfigElement multipartConfigElement = new MultipartConfigElement(System.getProperty("java.io.tmpdir"));
-            req.raw().setAttribute("org.eclipse.jetty.multipartConfig", multipartConfigElement);
-            Part file = req.raw().getPart("csv-file");
-            StringWriter writer = new StringWriter();
-            spark.utils.IOUtils.copy(file.getInputStream(), writer);
-            String s = writer.toString();
+            System.out.println("Import CSV");
+
+            String s = getFileContent(req.body());
             System.out.println(s);
-            //String filePath = System.getProperty("user.dir") + "/csv.txt";
-            //System.out.println(filePath);
-            //file.write(filePath);
 
             return s;
         });
+
 
         // Simple example route
         get("/hello", (req, res) -> "Hello World");
@@ -60,6 +55,7 @@ public class Server {
 
         // List users
         get("api/users", (req, res) -> {
+            System.out.println("Get Users!");
             res.type("application/json");
             return userController.listUsers(req.queryMap().toMap());
         });
@@ -84,6 +80,13 @@ public class Server {
             return "Sorry, we couldn't find that!";
         });
 
+    }
+
+    public static String getFileContent(String body){
+
+        String[] splitBody = body.split("\n\r");
+
+        return splitBody[1];
     }
 
 }
