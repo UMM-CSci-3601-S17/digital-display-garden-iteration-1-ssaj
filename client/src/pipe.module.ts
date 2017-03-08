@@ -1,6 +1,6 @@
 import { NgModule }      from '@angular/core';
 import { CommonModule }  from '@angular/common';
-import { FilterBy }      from './app/temp/filter.pipe';
+import { FilterBy }      from './app/filter.pipe';
 
 @NgModule({
     imports:        [CommonModule],

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PlantListService } from "./plant-list.service";
-import { Plants } from "../temp/Plants";
+import { Plants } from "./Plants";
 import {RequestOptions, Headers} from "@angular/http";
 import {Observable} from "rxjs";
 
