@@ -5,7 +5,6 @@ import { HttpModule, JsonpModule } from '@angular/http';
 import { AppComponent }         from './app/app.component';
 import { NavbarComponent } from './app/navbar/navbar.component';
 import { HomeComponent} from './app/home/home.component';
-import { KittensComponent }   from './app/kittens/kittens.component';
 import { UserListComponent } from './app/users/user-list.component';
 import { PlantListComponent } from './app/plants/plant-list.component';
 import { UserListService } from './app/temp/user-list.service';
@@ -15,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { PipeModule } from './pipe.module';
 import {PlantListService} from "./app/plants/plant-list.service";
 
+// Defines this as the root module
 @NgModule({
     imports: [
         BrowserModule,
@@ -26,7 +26,6 @@ import {PlantListService} from "./app/plants/plant-list.service";
     ],
     declarations: [
         AppComponent,
-        KittensComponent,
         HomeComponent,
         NavbarComponent,
         UserListComponent,

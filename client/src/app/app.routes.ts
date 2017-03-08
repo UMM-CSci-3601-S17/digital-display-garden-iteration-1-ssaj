@@ -9,7 +9,6 @@ import {PlantListComponent} from "./plants/plant-list.component";
 // Route Configuration
 export const routes: Routes = [
     { path: '', component: HomeComponent },
-    { path: 'kittens', component: KittensComponent },
     { path: 'users', component: UserListComponent },
     { path: 'plants', component: PlantListComponent }
 ];
