@@ -5,7 +5,7 @@ package umm3601.user;
  */
 public class Plant {
 
-    String id,
+    String  id,
             commonName,
             cultivar,
             source,

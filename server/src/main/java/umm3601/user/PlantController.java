@@ -37,4 +37,8 @@ public class PlantController {
 
         CSVCollection = db.getCollection("CSV");
     }
+
+    public static void main (String[] args){
+
+    }
 }
