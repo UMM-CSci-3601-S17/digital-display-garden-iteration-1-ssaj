@@ -1,34 +1,34 @@
 import { Component, OnInit } from '@angular/core';
-import { PlantListService } from "./plant-list.service";
-import { Plants } from "./Plants";
+import { PlantService } from "./plant.service";
+import { Plant } from "./Plant";
 import {RequestOptions, Headers} from "@angular/http";
 import {Observable} from "rxjs";
 
 @Component({
-    selector: 'plant-list-component',
-    templateUrl: 'plant-list.component.html'
+    // The html tag
+    selector: 'plant-component',
+    templateUrl: 'plant.component.html'
 })
 
-export class PlantListComponent implements OnInit {
-    public plants: Plants[];
+export class PlantComponent implements OnInit {
+    public plants: Plant[];
 
 
-    constructor(private plantListService: PlantListService) {
+    constructor(private plantService: PlantService) {
         // this.plants = this.plantListService.getPlants();
     }
 
     fileChange(event) {
         console.log("Hello!");
 
-        this.plantListService.uploadFile(event);
+        this.plantService.uploadFile(event);
 
-        this.plantListService.getPlants();
-
+        this.plantService.getPlants();
 
     }
 
     ngOnInit(): void {
-        this.plantListService.getPlants().subscribe(
+        this.plantService.getPlants().subscribe(
             plants => this.plants = plants,
             err => {
                 console.log(err);
