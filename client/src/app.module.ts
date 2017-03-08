@@ -4,12 +4,12 @@ import { HttpModule, JsonpModule } from '@angular/http';
 import { AppComponent }         from './app/app.component';
 import { NavbarComponent } from './app/navbar/navbar.component';
 import { HomeComponent} from './app/home/home.component';
-import { PlantListComponent } from './app/plants/plant-list.component';
+import { PlantComponent } from './app/plants/plant.component';
 import { routing } from './app/app.routes';
 import { FormsModule } from '@angular/forms';
 
 import { PipeModule } from './pipe.module';
-import {PlantListService} from "./app/plants/plant-list.service";
+import {PlantService} from "./app/plants/plant.service";
 
 // Defines this as the root module
 @NgModule({
@@ -25,9 +25,9 @@ import {PlantListService} from "./app/plants/plant-list.service";
         AppComponent,
         HomeComponent,
         NavbarComponent,
-        PlantListComponent
+        PlantComponent
     ],
-    providers: [ PlantListService ],
+    providers: [ PlantService ],
     bootstrap: [ AppComponent ]
 })
 

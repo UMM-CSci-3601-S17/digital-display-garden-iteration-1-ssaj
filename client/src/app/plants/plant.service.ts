@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import {Http, Headers, RequestOptions, Response} from '@angular/http';
-import { Plants } from './Plants';
+import { Plant } from './Plant';
 import { Observable } from "rxjs";
 
 @Injectable()
-export class PlantListService {
+export class PlantService {
     private plantUrl: string = API_URL + "plants";
     constructor(private http:Http) { }
 
@@ -28,19 +28,9 @@ export class PlantListService {
         }
     }
 
-    getPlants(): Observable<Plants[]>{
+    getPlants(): Observable<Plant[]>{
         console.log("Getting plants");
         return this.http.request("http://localhost:4567/import-csv").map(res => res.json());
     }
-
-    // getUsers(): Observable<Plant[]> {
-    //     console.log(this.plantUrl);
-    //     return this.http.request(this.plantUrl).map(res => res.json());
-    // }
-    //
-    // getUserById(id: string): Observable<User> {
-    //     return this.http.request(this.plantUrl + "/" + id).map(res => res.json());
-    // }
-
 
 }
