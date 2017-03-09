@@ -49,19 +49,14 @@ public class Server {
         before((request, response) -> response.header("Access-Control-Allow-Origin", "*"));
 
         get("api/plants", (req, res) -> {
-            //List<String> lines = Files.readAllLines(Paths.get("plants.csv"));
             System.out.println("Plants");
             res.type("application/json");
-            return plantController.getPlants();
+            return plantController.getPlantCollection();
         });
-        post("/import-csv", (req, res) -> {
-            System.out.println("Post Import");
-            // The csv data from the client comes in here
-            String csvFile = getFileContent(req.body());
-            System.out.println(csvFile);
-            return csvFile;
+        post("api/plants", (req, res) -> {
+            plantController.addCSVToDatabase(req.body());
+            return plantController.getPlantCollection();
         });
-
 
         // Simple example route
         get("/hello", (req, res) -> "Hello World");
@@ -98,18 +93,6 @@ public class Server {
             return "Sorry, we couldn't find that!";
         });
 
-    }
-
-    public static String getFileContent(String body){
-
-        String[] splitBody = body.split("\n\r");
-
-        String fileContent = "";
-
-        for(int i = 1; i < splitBody.length - 1; i++)
-            fileContent += splitBody[i];
-
-        return fileContent;
     }
 
     public static String[] splittingString(String s){

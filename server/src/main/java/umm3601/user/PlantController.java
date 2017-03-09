@@ -2,24 +2,15 @@ package umm3601.user;
 
 import com.mongodb.MongoClient;
 import com.mongodb.client.*;
-import com.mongodb.client.model.Accumulators;
-import com.mongodb.client.model.Aggregates;
-import com.mongodb.client.model.Sorts;
 import com.mongodb.util.JSON;
 import org.bson.Document;
-import org.bson.types.ObjectId;
-import umm3601.Server;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.Map;
-
-import static com.mongodb.client.model.Filters.eq;
+import java.util.*;
 
 public class PlantController {
 
-    private final MongoCollection<Document> plants;
+    private final MongoCollection<Document> plantCollection;
 
     public PlantController() throws IOException {
 
@@ -29,19 +20,70 @@ public class PlantController {
 
         MongoDatabase db = mongoClient.getDatabase("UMM-WCROC");
 
-        plants = db.getCollection("plants");
+        plantCollection = db.getCollection("plantCollection");
 
 //        Plant p = Server.getPlant();
 //
-//        plants.insertOne(p.getDocument());
+//        plantCollection.insertOne(p.getDocument());
     }
 
-    public String getPlants(){
-
+    public String getPlantCollection(){
         Document filterDoc = new Document();
 
-        FindIterable<Document> matchingUsers = plants.find(filterDoc);
+        FindIterable<Document> matchingUsers = plantCollection.find(filterDoc);
 
         return JSON.serialize(matchingUsers);
+    }
+
+    public void addCSVToDatabase(String csv){
+
+        List<String> records = getCSVRecords(csv);
+
+        List<Plant> plants = buildPlants(records);
+
+        addPlantsToCollection(plants);
+
+    }
+
+    public void addPlantsToCollection(List<Plant> plants){
+
+        for(Plant p : plants)
+            plantCollection.insertOne(p.getDocument());
+
+    }
+
+    public static List<String> getCSVRecords(String body){
+        final int afterIgnoredRows = 5;
+
+        String[] splitBody = body.split("\n");
+        List<String> records = new ArrayList<>();
+
+        for(int i = afterIgnoredRows; i < splitBody.length - 1; i++)
+            records.add(splitBody[i]);
+
+        return records;
+    }
+
+    private List<Plant> buildPlants(List<String> records){
+        List<Plant> plants = new ArrayList<>();
+
+        for(String record : records) {
+                String[] plantData = record.split(",", -1);
+
+                Plant p = new Plant();
+                p.id = plantData[0].trim();
+                p.name = plantData[1].trim();
+                p.cultivar = plantData[2].trim();
+                p.source = plantData[3].trim();
+                p.seedVeg = plantData[4].trim();
+                p.perennialVegetable = plantData[5].trim();
+                p.container = plantData[6].trim();
+                p.gardenLocation = plantData[7].trim();
+                p.comments = plantData[8].trim();
+
+                plants.add(p);
+            }
+
+            return plants;
     }
 }

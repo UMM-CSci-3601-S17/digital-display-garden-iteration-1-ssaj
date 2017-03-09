@@ -4,6 +4,8 @@ import org.bson.Document;
 
 public class Plant {
 
+    public static final int NUM_FIELDS = 9;
+
     public String id,
                 name,
                 cultivar,
@@ -27,6 +29,12 @@ public class Plant {
                 .append("comments", comments);
 
         return plantDoc;
+    }
+
+    @Override
+    public String toString(){
+        return id + " " + name + " " + cultivar + " " + seedVeg + " " + perennialVegetable
+                + " " + container + " " + gardenLocation + " " + comments;
     }
 
 }
