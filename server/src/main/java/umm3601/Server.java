@@ -14,6 +14,7 @@ import static spark.Spark.*;
 
 
 public class Server {
+    public static String password;
     public static void main(String[] args) throws IOException {
         staticFiles.location("/public");
         UserController userController = new UserController();
@@ -46,11 +47,22 @@ public class Server {
             return csvFile;
         });
 
+        get("/registration", (req, res) -> {
+            res.body(password);
+            return "";
+        });
+        post("/registration", (req, res) -> {
+            // The csv data from the client comes in here
+            password = req.body();
+            System.out.println(password);
+            return password;
+        });
+
 
         // Simple example route
         get("/hello", (req, res) -> "Hello World");
 
-        // Redirects for the "home" page
+        // Redirects for the "home" pres.send(password)age
         redirect.get("", "/");
         redirect.get("/","/csv.html");
         //redirect.get("/", "http://localhost:9000");

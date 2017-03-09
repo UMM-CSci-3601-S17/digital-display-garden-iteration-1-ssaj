@@ -8,12 +8,14 @@ import { HomeComponent} from './app/home/home.component';
 import { KittensComponent }   from './app/kittens/kittens.component';
 import { UserListComponent } from './app/users/user-list.component';
 import { PlantListComponent } from './app/plants/plant-list.component';
+import { RegistrationComponent } from './app/registration/registration.component';
 import { UserListService } from './app/temp/user-list.service';
 import { routing } from './app/app.routes';
 import { FormsModule } from '@angular/forms';
 
 import { PipeModule } from './pipe.module';
 import {PlantListService} from "./app/plants/plant-list.service";
+import { RegistrationService } from './app/registration/registration.service';
 
 @NgModule({
     imports: [
@@ -30,9 +32,10 @@ import {PlantListService} from "./app/plants/plant-list.service";
         HomeComponent,
         NavbarComponent,
         UserListComponent,
-        PlantListComponent
+        PlantListComponent,
+        RegistrationComponent
     ],
-    providers: [ UserListService, PlantListService ],
+    providers: [ UserListService, PlantListService, RegistrationService ],
     bootstrap: [ AppComponent ]
 })
 
