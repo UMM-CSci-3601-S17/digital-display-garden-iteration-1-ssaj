@@ -16,6 +16,8 @@ import { FormsModule } from '@angular/forms';
 import { PipeModule } from './pipe.module';
 import {PlantListService} from "./app/plants/plant-list.service";
 import { RegistrationService } from './app/registration/registration.service';
+import {LoginComponent} from "./app/login/login.component";
+import { LoginService } from './app/login/login.component.service';
 
 @NgModule({
     imports: [
@@ -33,9 +35,10 @@ import { RegistrationService } from './app/registration/registration.service';
         NavbarComponent,
         UserListComponent,
         PlantListComponent,
-        RegistrationComponent
+        RegistrationComponent,
+        LoginComponent
     ],
-    providers: [ UserListService, PlantListService, RegistrationService ],
+    providers: [ UserListService, PlantListService, RegistrationService, LoginService ],
     bootstrap: [ AppComponent ]
 })
 

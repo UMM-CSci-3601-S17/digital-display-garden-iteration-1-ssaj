@@ -1,6 +1,7 @@
 package umm3601;
 
 
+import umm3601.user.LoginController;
 import umm3601.user.UserController;
 import javax.servlet.MultipartConfigElement;
 import javax.servlet.http.Part;
@@ -47,14 +48,25 @@ public class Server {
             return csvFile;
         });
 
-        get("/registration", (req, res) -> {
-            res.body(password);
+        post("/registration-check", (req, res) -> {
+            String UserPassword = req.body();
+            UserPassword = getPasswordOnly(UserPassword);
+            System.out.println(UserPassword);
+            if (UserPassword.equals(password)){
+                System.out.println("Should login");
+                redirect.get("/", "/csv.html");
+                return true;
+            }
+            if (!UserPassword.equals(password)){
+                return false;
+            }
             return "";
         });
         post("/registration", (req, res) -> {
             // The csv data from the client comes in here
             password = req.body();
-            System.out.println(password);
+            password = getPasswordOnly(password);
+            LoginController.addPassword();
             return password;
         });
 
@@ -107,6 +119,20 @@ public class Server {
         for(int i = 1; i < splitBody.length - 1; i++)
             fileContent += splitBody[i];
 
+        return fileContent;
+    }
+
+    public static String getPasswordOnly(String body){
+
+        String[] splitBody = body.split(":");
+
+        String fileContent = "";
+
+        for(int i = 1; i <= splitBody.length - 1; i++)
+            fileContent += splitBody[i];
+        fileContent = fileContent.replace('"', ' ');
+        fileContent = fileContent.replace('}', ' ');
+        System.out.println("fileContent = " + fileContent);
         return fileContent;
     }
 

@@ -1,10 +1,9 @@
 <html>
-<h1>Register With Your Username and Password</h1>
+<h1>Log in with your username and password</h1>
 <div>
     <label>Password:</label> <input #password />
     <button (click)="add(password.value); password.value=''">
-        Sign up
-        <li><a [routerLink]="['/login']"></a></li>
+        Login
     </button>
 </div>
 </html>
