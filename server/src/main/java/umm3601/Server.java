@@ -45,7 +45,6 @@ public class Server {
 
         get("api/plants", (req, res) -> {
             System.out.println("Plants");
-            res.type("application/json");
             return plantController.getPlantCollection();
         });
         post("api/plants", (req, res) -> {

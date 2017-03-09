@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { PipeModule } from './pipe.module';
 import {PlantListService} from "./app/plants/plant-list.service";
 import {PlantListComponent} from "./app/plants/plant-list.component";
+import {AdministrationComponent} from "./app/plants/administration.component";
 
 
 // Defines this as the root mod ule
@@ -25,7 +26,8 @@ import {PlantListComponent} from "./app/plants/plant-list.component";
         AppComponent,
         HomeComponent,
         NavbarComponent,
-        PlantListComponent
+        PlantListComponent,
+        AdministrationComponent
     ],
     providers: [ PlantListService ],
     bootstrap: [ AppComponent ]
