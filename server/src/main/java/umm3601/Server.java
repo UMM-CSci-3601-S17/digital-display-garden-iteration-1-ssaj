@@ -1,7 +1,7 @@
 package umm3601;
 
-import umm3601.user.Plant;
-import umm3601.user.PlantController;
+import umm3601.plant.Plant;
+import umm3601.plant.PlantController;
 import java.io.IOException;
 import static spark.Spark.*;
 

@@ -7,13 +7,8 @@ import { HomeComponent} from './app/home/home.component';
 import { routing } from './app/app.routes';
 import { FormsModule } from '@angular/forms';
 import { PipeModule } from './pipe.module';
-import {UserListService} from "./app/users/user-list.service";
-import {UserListComponent} from "./app/users/user-list.component";
 import {PlantListService} from "./app/plants/plant-list.service";
 import {PlantListComponent} from "./app/plants/plant-list.component";
-
-
-
 
 
 // Defines this as the root mod ule
@@ -30,10 +25,9 @@ import {PlantListComponent} from "./app/plants/plant-list.component";
         AppComponent,
         HomeComponent,
         NavbarComponent,
-        PlantListComponent,
-        UserListComponent
+        PlantListComponent
     ],
-    providers: [ PlantListService, UserListService ],
+    providers: [ PlantListService ],
     bootstrap: [ AppComponent ]
 })
 

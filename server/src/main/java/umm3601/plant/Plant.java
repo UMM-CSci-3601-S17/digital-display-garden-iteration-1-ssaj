@@ -1,4 +1,4 @@
-package umm3601.user;
+package umm3601.plant;
 
 import org.bson.Document;
 

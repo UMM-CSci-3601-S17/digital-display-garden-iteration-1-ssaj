@@ -1,10 +1,9 @@
-package umm3601.user;
+package umm3601.plant;
 
 import com.mongodb.MongoClient;
 import com.mongodb.client.*;
 import com.mongodb.util.JSON;
 import org.bson.Document;
-
 import java.io.IOException;
 import java.util.*;
 
