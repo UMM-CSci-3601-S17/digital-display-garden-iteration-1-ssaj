@@ -1,12 +1,8 @@
 package umm3601;
 
-
 import umm3601.user.Plant;
 import umm3601.user.PlantController;
-import umm3601.user.UserController;
-
 import java.io.IOException;
-
 import static spark.Spark.*;
 
 
@@ -28,7 +24,6 @@ public class Server {
 
     public static void main(String[] args) throws IOException {
         staticFiles.location("/public");
-        UserController userController = new UserController();
         PlantController plantController = new PlantController();
 
         options("/*", (request, response) -> {
@@ -66,26 +61,6 @@ public class Server {
         redirect.get("/","/csv.html");
         //redirect.get("/", "http://localhost:9000");
 
-        // List users
-        get("api/users", (req, res) -> {
-            System.out.println("Get Users!");
-            res.type("application/json");
-            return userController.listUsers(req.queryMap().toMap());
-        });
-
-        // See specific user
-        get("api/users/:id", (req, res) -> {
-            res.type("application/json");
-            String id = req.params("id");
-            return userController.getUser(id);
-        });
-
-        // Get average ages by company
-        get("api/avgUserAgeByCompany", (req, res) -> {
-            res.type("application/json");
-            return userController.getAverageAgeByCompany();
-        });
-
         // Handle "404" file not found requests:
         notFound((req, res) -> {
             res.type("text");
@@ -94,11 +69,4 @@ public class Server {
         });
 
     }
-
-    public static String[] splittingString(String s){
-        String[] splitS = s.split(",");
-        System.out.println(splitS.length);
-        return splitS;
-    }
-
 }

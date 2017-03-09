@@ -14,17 +14,12 @@ public class PlantController {
 
     public PlantController() throws IOException {
 
-        System.out.println("PlantController Created");
-
         MongoClient mongoClient = new MongoClient();
 
         MongoDatabase db = mongoClient.getDatabase("UMM-WCROC");
 
         plantCollection = db.getCollection("plantCollection");
 
-//        Plant p = Server.getPlant();
-//
-//        plantCollection.insertOne(p.getDocument());
     }
 
     public String getPlantCollection(){
