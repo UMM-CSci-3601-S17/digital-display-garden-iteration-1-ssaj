@@ -6,9 +6,9 @@ import { Component } from '@angular/core';
 
 // Component class
 export class HomeComponent {
-    public text: string;
+    public greeting: string;
 
     constructor() {
-        this.text = "Hello world!";
+        this.greeting = "Welcome to the Digital Display Garden!";
     }
 }

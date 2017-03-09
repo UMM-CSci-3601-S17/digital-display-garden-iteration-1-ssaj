@@ -1,17 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>about</title>
-</head>
-<body>
-<input type="file" (change)="fileChange($event)" placeholder="Upload file">
-
-<h1>Plants</h1>
-
-<li *ngFor="let plant of plants" class="list-group-item">
-    {{plant.plantName}}
-</li>
-
-</body>
-</html>
+<ul class="list-group">
+    <li class="list-group-item list-group-item-info"><h4>Plant List</h4></li>
+    <li *ngFor="let plant of plants" class="list-group-item">
+        <ul>
+            <span class="label label-primary">{{"ID: " + plant._id}}</span> <Br>
+            {{"Name: " + plant.name}} <br>
+            {{"Cultivar: " + plant.cultivar}} <br>
+            {{"Source: " + plant.source}} <br>
+            {{"Seed/Veg: " + plant.seedVeg}} <br>
+            {{"Perennial/Vegetable: " + plant.perennialVegetable}} <br>
+            {{"Container: " + plant.container}} <br>
+            {{"Garden Location: " + plant.gardenLocation}} <br>
+            {{"Comments: " + plant.comments}} <br>
+        </ul>
+    </li>
+</ul>

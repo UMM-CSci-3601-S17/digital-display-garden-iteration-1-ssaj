@@ -1,22 +1,30 @@
 package umm3601;
 
-
-import umm3601.user.UserController;
-import javax.servlet.MultipartConfigElement;
-import javax.servlet.http.Part;
+import umm3601.plant.Plant;
+import umm3601.plant.PlantController;
 import java.io.IOException;
-import java.io.StringWriter;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
 import static spark.Spark.*;
 
 
 public class Server {
+
+    public static Plant getPlant(){
+        Plant p = new Plant();
+        p.id = "16601";
+        p.name = "Achillea millefolium";
+        p.cultivar = "New Vintage Red";
+        p.source = "BA";
+        p.seedVeg = "V";
+        p.perennialVegetable = "P";
+        p.container = "HB";
+        p.gardenLocation = "2";
+        p.comments = "What a pretty flower! ^_^ - Arrived 6-1-2016";
+        return p;
+    }
+
     public static void main(String[] args) throws IOException {
         staticFiles.location("/public");
-        UserController userController = new UserController();
+        PlantController plantController = new PlantController();
 
         options("/*", (request, response) -> {
 
@@ -29,21 +37,19 @@ public class Server {
             if (accessControlRequestMethod != null) {
                 response.header("Access-Control-Allow-Methods", accessControlRequestMethod);
             }
-
+ 
             return "OK";
         });
 
         before((request, response) -> response.header("Access-Control-Allow-Origin", "*"));
 
-        get("/import-csv", (req, res) -> {
-            // return MongoDB JSON here
-            return "";
+        get("api/plants", (req, res) -> {
+            System.out.println("Plants");
+            return plantController.getPlantCollection();
         });
-        post("/import-csv", (req, res) -> {
-            // The csv data from the client comes in here
-            String csvFile = getFileContent(req.body());
-            System.out.println(csvFile);
-            return csvFile;
+        post("api/plants", (req, res) -> {
+            plantController.addCSVToDatabase(req.body());
+            return plantController.getPlantCollection();
         });
 
 
@@ -55,28 +61,6 @@ public class Server {
         redirect.get("/","/csv.html");
         //redirect.get("/", "http://localhost:9000");
 
-
-
-        // List users
-        get("api/users", (req, res) -> {
-            System.out.println("Get Users!");
-            res.type("application/json");
-            return userController.listUsers(req.queryMap().toMap());
-        });
-
-        // See specific user
-        get("api/users/:id", (req, res) -> {
-            res.type("application/json");
-            String id = req.params("id");
-            return userController.getUser(id);
-        });
-
-        // Get average ages by company
-        get("api/avgUserAgeByCompany", (req, res) -> {
-            res.type("application/json");
-            return userController.getAverageAgeByCompany();
-        });
-
         // Handle "404" file not found requests:
         notFound((req, res) -> {
             res.type("text");
@@ -85,23 +69,4 @@ public class Server {
         });
 
     }
-
-    public static String getFileContent(String body){
-
-        String[] splitBody = body.split("\n\r");
-
-        String fileContent = "";
-
-        for(int i = 1; i < splitBody.length - 1; i++)
-            fileContent += splitBody[i];
-
-        return fileContent;
-    }
-
-    public static String[] splittingString(String s){
-        String[] splitS = s.split(",");
-        System.out.println(splitS.length);
-        return splitS;
-    }
-
 }
