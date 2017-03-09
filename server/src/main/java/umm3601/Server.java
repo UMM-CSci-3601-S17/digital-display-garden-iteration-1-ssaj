@@ -58,7 +58,7 @@ public class Server {
 
         // Redirects for the "home" page
         redirect.get("", "/");
-        redirect.get("/","/csv.html");
+        // redirect.get("/","/");
         //redirect.get("/", "http://localhost:9000");
 
         // Handle "404" file not found requests:
