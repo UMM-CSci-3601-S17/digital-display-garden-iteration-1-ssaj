@@ -1,6 +1,8 @@
 package umm3601;
 
 
+import com.mongodb.util.JSON;
+import umm3601.user.Plant;
 import umm3601.user.UserController;
 import javax.servlet.MultipartConfigElement;
 import javax.servlet.http.Part;
@@ -14,6 +16,18 @@ import static spark.Spark.*;
 
 
 public class Server {
+
+    public static Plant getPlant(){
+        Plant p = new Plant();
+        p.id = "ID-123";
+        p.name = "Daisy";
+        p.cultivar = "Experimental";
+        p.source = "AB";
+        p.bedNumber = "2";
+        p.comments = "What a pretty flower! ^_^";
+        return p;
+    }
+
     public static void main(String[] args) throws IOException {
         staticFiles.location("/public");
         UserController userController = new UserController();
@@ -35,11 +49,14 @@ public class Server {
 
         before((request, response) -> response.header("Access-Control-Allow-Origin", "*"));
 
-        get("/import-csv", (req, res) -> {
-            // return MongoDB JSON here
-            return "";
+        get("api/plants", (req, res) -> {
+            Plant p = getPlant();
+            String json = "JSON";
+            System.out.println(json);
+            return json;
         });
         post("/import-csv", (req, res) -> {
+            System.out.println("Post Import");
             // The csv data from the client comes in here
             String csvFile = getFileContent(req.body());
             System.out.println(csvFile);
@@ -54,8 +71,6 @@ public class Server {
         redirect.get("", "/");
         redirect.get("/","/csv.html");
         //redirect.get("/", "http://localhost:9000");
-
-
 
         // List users
         get("api/users", (req, res) -> {

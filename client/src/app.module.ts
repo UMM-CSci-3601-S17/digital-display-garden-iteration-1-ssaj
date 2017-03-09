@@ -7,9 +7,11 @@ import { HomeComponent} from './app/home/home.component';
 import { PlantComponent } from './app/plants/plant.component';
 import { routing } from './app/app.routes';
 import { FormsModule } from '@angular/forms';
-
 import { PipeModule } from './pipe.module';
 import {PlantService} from "./app/plants/plant.service";
+import {PlantDetailComponent} from "./app/plants/plant-detail.component";
+
+
 
 // Defines this as the root module
 @NgModule({
@@ -25,7 +27,8 @@ import {PlantService} from "./app/plants/plant.service";
         AppComponent,
         HomeComponent,
         NavbarComponent,
-        PlantComponent
+        PlantComponent,
+        PlantDetailComponent
     ],
     providers: [ PlantService ],
     bootstrap: [ AppComponent ]
