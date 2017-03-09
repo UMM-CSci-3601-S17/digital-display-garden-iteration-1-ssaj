@@ -36,20 +36,22 @@ public class UserController {
         MongoDatabase db = mongoClient.getDatabase("test");
 
         userCollection = db.getCollection("users");
+
     }
 
     // List users
     public String listUsers(Map<String, String[]> queryParams) {
         Document filterDoc = new Document();
 
-        if (queryParams.containsKey("age")) {
-            int targetAge = Integer.parseInt(queryParams.get("age")[0]);
-            filterDoc = filterDoc.append("age", targetAge);
-        }
+//        if (queryParams.containsKey("age")) {
+//            int targetAge = Integer.parseInt(queryParams.get("age")[0]);
+//            filterDoc = filterDoc.append("age", targetAge);
+//        }
 
         FindIterable<Document> matchingUsers = userCollection.find(filterDoc);
 
         return JSON.serialize(matchingUsers);
+
     }
 
     // Get a single user

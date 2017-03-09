@@ -1,16 +1,11 @@
 package umm3601;
 
 
-import com.mongodb.util.JSON;
 import umm3601.user.Plant;
+import umm3601.user.PlantController;
 import umm3601.user.UserController;
-import javax.servlet.MultipartConfigElement;
-import javax.servlet.http.Part;
+
 import java.io.IOException;
-import java.io.StringWriter;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 import static spark.Spark.*;
 
@@ -19,18 +14,22 @@ public class Server {
 
     public static Plant getPlant(){
         Plant p = new Plant();
-        p.id = "ID-123";
-        p.name = "Daisy";
-        p.cultivar = "Experimental";
-        p.source = "AB";
-        p.bedNumber = "2";
-        p.comments = "What a pretty flower! ^_^";
+        p.id = "16601";
+        p.name = "Achillea millefolium";
+        p.cultivar = "New Vintage Red";
+        p.source = "BA";
+        p.seedVeg = "V";
+        p.perennialVegetable = "P";
+        p.container = "HB";
+        p.gardenLocation = "2";
+        p.comments = "What a pretty flower! ^_^ - Arrived 6-1-2016";
         return p;
     }
 
     public static void main(String[] args) throws IOException {
         staticFiles.location("/public");
         UserController userController = new UserController();
+        PlantController plantController = new PlantController();
 
         options("/*", (request, response) -> {
 
@@ -50,10 +49,10 @@ public class Server {
         before((request, response) -> response.header("Access-Control-Allow-Origin", "*"));
 
         get("api/plants", (req, res) -> {
-            Plant p = getPlant();
-            String json = "JSON";
-            System.out.println(json);
-            return json;
+            //List<String> lines = Files.readAllLines(Paths.get("plants.csv"));
+            System.out.println("Plants");
+            res.type("application/json");
+            return plantController.getPlants();
         });
         post("/import-csv", (req, res) -> {
             System.out.println("Post Import");

@@ -3,6 +3,9 @@ export class Plant {
     name: string;
     cultivar: string;
     source: string;
-    bedNumber: string;
+    seedVeg: string;
+    perennialVegetable: string;
+    container: string;
+    gardenLocation: string;
     comments: string;
 }
